@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
@@ -10,12 +10,12 @@ export const AuthProvider = ({ children }) => {
 
   // Axios instance
   const api = axios.create({
-    baseURL: 'http://localhost:5001/api',
+    baseURL: `${import.meta.env.VITE_API_URL}/api`,
   });
 
   // Set token to headers
   api.interceptors.request.use((config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -24,17 +24,17 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
         try {
-          const res = await api.get('/auth/me');
+          const res = await api.get("/auth/me");
           setUser(res.data);
           if (res.data.theme) {
-            document.documentElement.setAttribute('data-theme', res.data.theme);
+            document.documentElement.setAttribute("data-theme", res.data.theme);
           }
         } catch (err) {
-          console.error('Error fetching user', err);
-          localStorage.removeItem('token');
+          console.error("Error fetching user", err);
+          localStorage.removeItem("token");
           setUser(null);
         }
       }
@@ -47,15 +47,15 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       setError(null);
-      const res = await api.post('/auth/login', { email, password });
-      localStorage.setItem('token', res.data.token);
+      const res = await api.post("/auth/login", { email, password });
+      localStorage.setItem("token", res.data.token);
       setUser(res.data);
       if (res.data.theme) {
-        document.documentElement.setAttribute('data-theme', res.data.theme);
+        document.documentElement.setAttribute("data-theme", res.data.theme);
       }
       return true;
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      setError(err.response?.data?.message || "Login failed");
       return false;
     }
   };
@@ -63,37 +63,37 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     try {
       setError(null);
-      const res = await api.post('/auth/register', { name, email, password });
-      localStorage.setItem('token', res.data.token);
+      const res = await api.post("/auth/register", { name, email, password });
+      localStorage.setItem("token", res.data.token);
       setUser(res.data);
       if (res.data.theme) {
-        document.documentElement.setAttribute('data-theme', res.data.theme);
+        document.documentElement.setAttribute("data-theme", res.data.theme);
       }
       return true;
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
+      setError(err.response?.data?.message || "Registration failed");
       return false;
     }
   };
 
   const updateProfile = async (avatar, theme) => {
     try {
-      const res = await api.put('/auth/profile', { avatar, theme });
+      const res = await api.put("/auth/profile", { avatar, theme });
       setUser(res.data);
       if (res.data.theme) {
-        document.documentElement.setAttribute('data-theme', res.data.theme);
+        document.documentElement.setAttribute("data-theme", res.data.theme);
       }
       return true;
     } catch (err) {
-      console.error('Failed to update profile', err);
+      console.error("Failed to update profile", err);
       return false;
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setUser(null);
-    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute("data-theme");
   };
 
   return (
@@ -106,7 +106,7 @@ export const AuthProvider = ({ children }) => {
         register,
         logout,
         updateProfile,
-        api
+        api,
       }}
     >
       {children}
