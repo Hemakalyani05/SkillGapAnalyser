@@ -144,16 +144,17 @@ JWT_SECRET=your_secret_key
 
 ## 📈 Future Enhancements
 
-* Advanced ML models for better analysis
-* ATS score prediction
-* Resume improvement suggestions
-* Certification tracking system
+- 🤖 Advanced AI models for more accurate skill-gap analysis
+- 📊 ATS score prediction and resume optimization
+- 🎯 Personalized learning roadmaps based on identified skill gaps
+- 💼 AI-powered job recommendations based on user skills
+- 📈 Skill progress tracking and certification management
 
 ---
 
 ## 👩‍💻 Author
 
-* Navya Gowthami
+* Hema Kalyani 
 
 ---
 
@@ -162,5 +163,6 @@ JWT_SECRET=your_secret_key
 Skill Gap AI is not just a job portal—it is a **career development platform** that helps users become job-ready by identifying and bridging their skill gaps.
 
 ## 🚀 Live Demo
-zesty-mindfulness-production-200b.up.railway.app
+
+[Click here to try Skill Gap AI](https://zesty-mindfulness-production-200b.up.railway.app)
 
