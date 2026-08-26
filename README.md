@@ -161,8 +161,6 @@ JWT_SECRET=your_secret_key
 
 Skill Gap AI is not just a job portal—it is a **career development platform** that helps users become job-ready by identifying and bridging their skill gaps.
 
-## Project Demonstration Link 
-https://drive.google.com/file/d/1WFW5nKt3kt30LLi3dPE8jltMzPARynta/view?usp=drivesdk 
+## 🚀 Live Demo
+zesty-mindfulness-production-200b.up.railway.app
 
-## Code Explanation Link
-https://drive.google.com/file/d/1ZiVMSVOeno1QkhApJ7-rIhyf1PAACs91/view?usp=sharing 
