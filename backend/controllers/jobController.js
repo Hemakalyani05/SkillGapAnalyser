@@ -6,6 +6,9 @@ const JobRole = require('../models/JobRole');
 const getJobs = async (req, res) => {
   try {
     const jobs = await JobRole.find().populate('requiredSkills');
+
+   console.log("Number of jobs found:", jobs.length);
+   console.log("Jobs:", jobs);
     res.status(200).json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
