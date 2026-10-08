@@ -4,15 +4,18 @@ const User = require('../models/User');
 const protect = async (req, res, next) => {
   let token;
 
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
     try {
-      // Get token from header
       token = req.headers.authorization.split(' ')[1];
 
-      // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(
+        token,
+        process.env.JWT_SECRET
+      );
 
-      // Get user from the token
       req.user = await User.findById(decoded.id).select('-password');
 
       next();
@@ -23,20 +26,30 @@ const protect = async (req, res, next) => {
   }
 
   if (!token) {
-    res.status(401).json({ message: 'Not authorized, no token' });
+    res.status(401).json({
+      message: 'Not authorized, no token'
+    });
   }
 };
 
-
 const authorize = (...roles) => {
   return (req, res, next) => {
-    if (!req.user || !roles.includes(req.user.role)) {
-      return res.status(403).json({ message: `User role ${req.user ? req.user.role : 'undefined'} is not authorized to access this route` });
+    if (
+      !req.user ||
+      !roles.includes(req.user.role)
+    ) {
+      return res.status(403).json({
+        message: `User role ${
+          req.user ? req.user.role : 'undefined'
+        } is not authorized to access this route`
+      });
     }
+
     next();
   };
 };
 
-module.exports = { protect, authorize };
-
-module.exports = { protect };
+module.exports = {
+  protect,
+  authorize
+};
