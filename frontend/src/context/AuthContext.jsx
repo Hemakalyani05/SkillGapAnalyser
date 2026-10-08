@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 // Axios instance
 const api = axios.create({
-  baseURL: 'https://skillgap-fsd-backend.onrender.com/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
 });
 
 // Set token to headers
