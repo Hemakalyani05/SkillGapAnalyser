@@ -14,11 +14,7 @@ const generateToken = (id) => {
 // @access  Public
 const registerUser = async (req, res) => {
   try {
-<<<<<<< HEAD
     const { name, email, password, role } = req.body;
-=======
-    const { name, email, password } = req.body;
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: 'Please add all fields' });
@@ -40,10 +36,7 @@ const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-<<<<<<< HEAD
       role: role || 'user',
-=======
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
     });
 
     if (user) {
@@ -53,10 +46,7 @@ const registerUser = async (req, res) => {
         email: user.email,
         avatar: user.avatar,
         theme: user.theme,
-<<<<<<< HEAD
         role: user.role,
-=======
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
         token: generateToken(user._id),
       });
     } else {
@@ -84,10 +74,7 @@ const loginUser = async (req, res) => {
         email: user.email,
         avatar: user.avatar,
         theme: user.theme,
-<<<<<<< HEAD
         role: user.role,
-=======
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
         token: generateToken(user._id),
       });
     } else {
@@ -109,10 +96,7 @@ const getMe = async (req, res) => {
       email: req.user.email,
       avatar: req.user.avatar,
       theme: req.user.theme,
-<<<<<<< HEAD
       role: req.user.role,
-=======
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
       history: req.user.history || []
     });
   } catch (error) {
@@ -126,6 +110,7 @@ const getMe = async (req, res) => {
 const updateProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
+
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
