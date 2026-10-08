@@ -27,7 +27,7 @@ const protect = async (req, res, next) => {
   }
 };
 
-<<<<<<< HEAD
+
 const authorize = (...roles) => {
   return (req, res, next) => {
     if (!req.user || !roles.includes(req.user.role)) {
@@ -38,6 +38,5 @@ const authorize = (...roles) => {
 };
 
 module.exports = { protect, authorize };
-=======
+
 module.exports = { protect };
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
