@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-<<<<<<< HEAD
+
   role: {
     type: String,
     enum: ['candidate', 'recruiter', 'user'],
@@ -32,14 +32,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'dark'
   },
-=======
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
   history: [{
     jobRole: String,
     jobId: mongoose.Schema.Types.ObjectId,
     matchPercentage: Number,
-<<<<<<< HEAD
-=======
     atsScore: Number,
     missingSkills: [{ type: String }],
     userSkills: [{ type: String }],
@@ -54,7 +50,7 @@ const userSchema = new mongoose.Schema({
       matchPercentage: Number,
       jobId: mongoose.Schema.Types.ObjectId
     }],
->>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
+
     date: {
       type: Date,
       default: Date.now
