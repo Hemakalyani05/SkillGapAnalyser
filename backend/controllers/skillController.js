@@ -12,7 +12,6 @@ const getSkills = async (req, res) => {
   }
 };
 
-
 // @desc    Add a skill
 // @route   POST /api/skills
 // @access  Private/Admin
@@ -32,10 +31,20 @@ const addSkill = async (req, res) => {
 const deleteSkill = async (req, res) => {
   try {
     const skill = await Skill.findByIdAndDelete(req.params.id);
-    if (!skill) return res.status(404).json({ message: 'Skill not found' });
-    res.status(200).json({ message: 'Skill deleted' });
+
+    if (!skill) {
+      return res.status(404).json({
+        message: 'Skill not found'
+      });
+    }
+
+    res.status(200).json({
+      message: 'Skill deleted'
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message
+    });
   }
 };
 
@@ -43,6 +52,4 @@ module.exports = {
   getSkills,
   addSkill,
   deleteSkill
-module.exports = {
-  getSkills,
 };
