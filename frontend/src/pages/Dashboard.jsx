@@ -8,6 +8,7 @@ const Dashboard = () => {
   
   const [skills, setSkills] = useState([]);
   const [jobs, setJobs] = useState([]);
+<<<<<<< HEAD
   const [applications, setApplications] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [selectedJob, setSelectedJob] = useState('');
@@ -23,10 +24,17 @@ const Dashboard = () => {
     }, 300);
     return () => clearTimeout(handler);
   }, [searchQuery]);
+=======
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [selectedJob, setSelectedJob] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(true);
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+<<<<<<< HEAD
         const [skillsRes, jobsRes, appsRes] = await Promise.all([
           api.get('/skills'),
           api.get('/jobs'),
@@ -35,6 +43,14 @@ const Dashboard = () => {
         setSkills(skillsRes.data);
         setJobs(jobsRes.data);
         setApplications(appsRes.data || []);
+=======
+        const [skillsRes, jobsRes] = await Promise.all([
+          api.get('/skills'),
+          api.get('/jobs')
+        ]);
+        setSkills(skillsRes.data);
+        setJobs(jobsRes.data);
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
         setLoading(false);
       } catch (err) {
         console.error('Error fetching data', err);
@@ -70,6 +86,7 @@ const Dashboard = () => {
     }
   };
 
+<<<<<<< HEAD
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -130,11 +147,24 @@ const Dashboard = () => {
           <div style={{ color: 'var(--text-secondary)' }}>Weekly Match Growth</div>
         </div>
       </div>
+=======
+  if (loading) return <div className="container" style={{paddingTop: '2rem'}}>Loading...</div>;
+
+  const filteredSkills = skills.filter(skill => 
+    skill.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    skill.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
+    <div className="container animate-fade-in" style={{ paddingTop: '2rem' }}>
+      <h1 style={{ marginBottom: '2rem' }}>Skill Profiling</h1>
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
       
       <div className="flex flex-col gap-6" style={{ md: { flexDirection: 'row'} }}>
         {/* Skills Selection */}
         <div className="glass-panel" style={{ flex: 2 }}>
           <h2>1. What skills do you currently have?</h2>
+<<<<<<< HEAD
           <p>Upload your resume or select technologies manually.</p>
           
           <div style={{ padding: '1.5rem', border: '2px dashed var(--border-color)', borderRadius: 'var(--radius-md)', textAlign: 'center', margin: '1.5rem 0', backgroundColor: 'rgba(255,255,255,0.02)' }}>
@@ -152,6 +182,10 @@ const Dashboard = () => {
             {isUploading && <div style={{ marginTop: '1rem', color: 'var(--text-primary)' }}>Parsing resume with NLP...</div>}
           </div>
 
+=======
+          <p>Select all the technologies and skills you are proficient in.</p>
+          
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
           <div className="input-group" style={{ marginTop: '1rem' }}>
             <input 
               type="text" 
@@ -194,11 +228,18 @@ const Dashboard = () => {
               className="input-field"
               value={selectedJob}
               onChange={(e) => setSelectedJob(e.target.value)}
+<<<<<<< HEAD
               style={{ backgroundColor: 'rgba(15, 23, 42, 0.8)', color: 'var(--text-primary)', cursor: 'pointer' }}
             >
               <option value="" style={{ backgroundColor: 'rgba(15, 23, 42, 1)' }}>-- Select Job Role --</option>
               {jobs.map(job => (
                 <option key={job._id} value={job._id} style={{ backgroundColor: 'rgba(15, 23, 42, 1)' }}>{job.roleName}</option>
+=======
+            >
+              <option value="">-- Select Job Role --</option>
+              {jobs.map(job => (
+                <option key={job._id} value={job._id}>{job.roleName}</option>
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
               ))}
             </select>
           </div>

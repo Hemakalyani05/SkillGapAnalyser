@@ -6,12 +6,19 @@ const JobRole = require('../models/JobRole');
 const getJobs = async (req, res) => {
   try {
     const jobs = await JobRole.find().populate('requiredSkills');
+<<<<<<< HEAD
+=======
+
+   console.log("Number of jobs found:", jobs.length);
+   console.log("Jobs:", jobs);
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
     res.status(200).json(jobs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+<<<<<<< HEAD
 // @desc    Add a job role
 // @route   POST /api/jobs
 // @access  Private/Admin
@@ -42,4 +49,8 @@ module.exports = {
   getJobs,
   addJob,
   deleteJob
+=======
+module.exports = {
+  getJobs,
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 };

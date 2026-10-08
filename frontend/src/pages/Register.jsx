@@ -7,10 +7,16 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
+<<<<<<< HEAD
     confirmPassword: '',
     role: 'candidate'
   });
   const { name, email, password, confirmPassword, role } = formData;
+=======
+    confirmPassword: ''
+  });
+  const { name, email, password, confirmPassword } = formData;
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
   const { register, error } = useContext(AuthContext);
   const [localError, setLocalError] = useState('');
   const navigate = useNavigate();
@@ -29,6 +35,7 @@ const Register = () => {
       return;
     }
     setLocalError('');
+<<<<<<< HEAD
     const registeredUser = await register(name, email, password, role);
     if (registeredUser) {
       if (registeredUser.role === 'recruiter') {
@@ -36,6 +43,11 @@ const Register = () => {
       } else {
         navigate('/dashboard');
       }
+=======
+    const success = await register(name, email, password);
+    if (success) {
+      navigate('/dashboard');
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
     }
   };
 
@@ -101,6 +113,7 @@ const Register = () => {
               placeholder="Confirm your password"
             />
           </div>
+<<<<<<< HEAD
           <div className="input-group">
             <label className="input-label" htmlFor="role">Role (For testing)</label>
             <select
@@ -115,6 +128,8 @@ const Register = () => {
               <option value="recruiter" style={{ backgroundColor: 'rgba(15, 23, 42, 1)' }}>Recruiter</option>
             </select>
           </div>
+=======
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
           <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
             Sign Up
           </button>

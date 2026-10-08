@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React, { useState, useContext, useEffect, useMemo } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+=======
+import React, { useState, useContext, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 
 const Profile = () => {
   const { user, updateProfile } = useContext(AuthContext);
@@ -48,6 +53,7 @@ const Profile = () => {
     setIsSaving(false);
   };
 
+<<<<<<< HEAD
   const chartData = useMemo(() => {
     if (!user || !user.history) return [];
     // Take the last 10 records and sort by date ascending for the chart
@@ -59,6 +65,8 @@ const Profile = () => {
     }));
   }, [user]);
 
+=======
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
   if (!user) return <div className="container" style={{paddingTop: '2rem'}}>Loading...</div>;
 
   return (
@@ -87,7 +95,11 @@ const Profile = () => {
         <div className="glass-panel" style={{ marginBottom: '2rem' }}>
           <h3 style={{ marginBottom: '1.5rem' }}>Recent Analysis History</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+<<<<<<< HEAD
             {user.history.slice(-5).reverse().map((record, index) => (
+=======
+            {user.history.slice().reverse().map((record, index) => (
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
               <div key={index} style={{ padding: '1rem', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: 'var(--radius-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <h4 style={{ margin: 0, color: 'var(--text-primary)' }}>{record.jobRole}</h4>
@@ -101,6 +113,7 @@ const Profile = () => {
               </div>
             ))}
           </div>
+<<<<<<< HEAD
 
           {chartData.length > 1 && (
             <div style={{ marginTop: '2rem', height: '300px', width: '100%' }}>
@@ -120,6 +133,8 @@ const Profile = () => {
               </ResponsiveContainer>
             </div>
           )}
+=======
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
         </div>
       )}
 

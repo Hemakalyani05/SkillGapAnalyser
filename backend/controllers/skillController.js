@@ -12,6 +12,7 @@ const getSkills = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // @desc    Add a skill
 // @route   POST /api/skills
 // @access  Private/Admin
@@ -42,4 +43,8 @@ module.exports = {
   getSkills,
   addSkill,
   deleteSkill
+=======
+module.exports = {
+  getSkills,
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 };

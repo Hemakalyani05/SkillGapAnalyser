@@ -4,7 +4,11 @@ import { AuthContext } from '../context/AuthContext';
 
 const Analysis = () => {
   const { jobId } = useParams();
+<<<<<<< HEAD
   const { api, refreshUser } = useContext(AuthContext);
+=======
+  const { api } = useContext(AuthContext);
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -13,9 +17,12 @@ const Analysis = () => {
       try {
         const res = await api.get(`/analysis/gap/${jobId}`);
         setData(res.data);
+<<<<<<< HEAD
         if (refreshUser) {
           refreshUser();
         }
+=======
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
         setLoading(false);
       } catch (err) {
         console.error('Error fetching analysis', err);
@@ -55,6 +62,7 @@ const Analysis = () => {
         <Link to="/dashboard" className="btn btn-outline">Back to Dashboard</Link>
       </div>
 
+<<<<<<< HEAD
       {data.userSkills && data.userSkills.length === 0 && (
         <div className="glass-panel" style={{ marginBottom: '2rem', border: '1px solid var(--accent-warning)', backgroundColor: 'rgba(245, 158, 11, 0.1)' }}>
           <h3 style={{ color: 'var(--accent-warning)', marginBottom: '0.5rem' }}>⚠️ Empty Skill Profile Detected</h3>
@@ -66,6 +74,8 @@ const Analysis = () => {
         </div>
       )}
 
+=======
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
       {/* Overview Section */}
       <div className="glass-panel" style={{ marginBottom: '2rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
@@ -100,9 +110,15 @@ const Analysis = () => {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+<<<<<<< HEAD
         {/* Strength Areas */}
         <div className="glass-panel">
           <h3 style={{ color: 'var(--accent-success)', marginBottom: '1rem' }}>Strength Areas</h3>
+=======
+        {/* Acquired Skills */}
+        <div className="glass-panel">
+          <h3 style={{ color: 'var(--accent-success)', marginBottom: '1rem' }}>Skills Acquired</h3>
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
           {data.requiredSkills.length - data.missingSkills.length === 0 ? (
             <p>You haven't acquired any of the required skills yet.</p>
           ) : (
@@ -136,8 +152,12 @@ const Analysis = () => {
       {/* Learning Roadmap Section */}
       {data.missingSkills.length > 0 && (
         <div style={{ marginTop: '3rem' }}>
+<<<<<<< HEAD
           <h2 style={{ marginBottom: '0.5rem', textAlign: 'center' }}>Learning Priority Roadmap</h2>
           <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Follow this sequence to fill your skill gap most effectively.</p>
+=======
+          <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Your Learning Roadmap</h2>
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
           <div style={{ position: 'relative', margin: '0 auto', maxWidth: '800px', padding: '2rem 0' }}>
             {/* Vertical Line */}
             <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', width: '4px', height: '100%', backgroundColor: 'var(--border-color)', top: 0, zIndex: 0 }}></div>

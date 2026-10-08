@@ -2,14 +2,20 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+<<<<<<< HEAD
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
 // Initial Database Connection Call
+=======
+
+// Connect to Database
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 connectDB();
 
 const app = express();
 
+<<<<<<< HEAD
 // Security Middleware
 app.use(helmet({
   crossOriginResourcePolicy: false,
@@ -63,3 +69,25 @@ if (process.env.NODE_ENV !== 'production' || require.main === module) {
 
 module.exports = app;
 
+=======
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Basic Route
+app.get('/', (req, res) => {
+  res.send('Skill Gap Analysis API is running...');
+});
+
+// Import routes
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/skills', require('./routes/skillRoutes'));
+app.use('/api/jobs', require('./routes/jobRoutes'));
+app.use('/api/analysis', require('./routes/analysisRoutes'));
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8

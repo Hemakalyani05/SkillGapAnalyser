@@ -26,10 +26,14 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
     "vite": "^5.0.0"
+<<<<<<< HEAD
   },
   "main": "vite.config.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": ""
+=======
+  }
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 }

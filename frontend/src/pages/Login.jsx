@@ -20,6 +20,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     const loggedInUser = await login(email, password);
     if (loggedInUser) {
       if (loggedInUser.role === 'recruiter') {
@@ -27,6 +28,11 @@ const Login = () => {
       } else {
         navigate('/dashboard');
       }
+=======
+    const success = await login(email, password);
+    if (success) {
+      navigate('/dashboard');
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
     }
   };
 

@@ -3,7 +3,10 @@ const Skill = require('../models/Skill');
 const UserSkill = require('../models/UserSkill');
 const Recommendation = require('../models/Recommendation');
 const User = require('../models/User');
+<<<<<<< HEAD
 const pdfParse = require('pdf-parse');
+=======
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 
 // @desc    Save user skills
 // @route   POST /api/analysis/user-skills
@@ -39,6 +42,7 @@ const analyzeSkillGap = async (req, res) => {
     const userId = req.user.id;
 
     // 1. Get Job Requirements
+<<<<<<< HEAD
     const JobPosting = require('../models/JobPosting');
     let job = await JobPosting.findById(jobId).populate('requiredSkills');
     
@@ -47,6 +51,9 @@ const analyzeSkillGap = async (req, res) => {
       job = await JobRole.findById(jobId).populate('requiredSkills');
     }
 
+=======
+    const job = await JobRole.findById(jobId).populate('requiredSkills');
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
     if (!job) {
       return res.status(404).json({ message: 'Job not found' });
     }
@@ -114,6 +121,7 @@ const analyzeSkillGap = async (req, res) => {
     recommendedJobs.sort((a, b) => b.matchPercentage - a.matchPercentage);
 
     // Save to User History
+<<<<<<< HEAD
     const userForHistory = await User.findById(userId);
     const lastHistory = userForHistory.history && userForHistory.history.length > 0 ? userForHistory.history[userForHistory.history.length - 1] : null;
     
@@ -135,6 +143,34 @@ const analyzeSkillGap = async (req, res) => {
 
     res.status(200).json({
       jobRole: job.title || job.roleName,
+=======
+    await User.findByIdAndUpdate(userId, {
+      $push: {
+        history: {
+          jobRole: job.roleName,
+          jobId: job._id,
+          matchPercentage,
+          atsScore,
+          missingSkills: missingSkills.map(s => s.name),
+          userSkills: userSkillsData.map(us => us.skillId.name),
+          recommendations: recommendations.map(r => ({
+            title: r.title,
+            type: r.type,
+            url: r.url,
+            difficulty: r.difficulty || 'Beginner'
+          })),
+          recommendedJobs: recommendedJobs.map(rj => ({
+            roleName: rj.roleName,
+            matchPercentage: rj.matchPercentage,
+            jobId: rj._id
+          }))
+        }
+      }
+    });
+
+    res.status(200).json({
+      jobRole: job.roleName,
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
       requiredSkills,
       userSkills: userSkillsData.map(us => us.skillId),
       missingSkills,
@@ -149,6 +185,7 @@ const analyzeSkillGap = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // @desc    Parse resume PDF and extract skills
 // @route   POST /api/analysis/parse-resume
 // @access  Private
@@ -192,4 +229,9 @@ module.exports = {
   saveUserSkills,
   analyzeSkillGap,
   parseResume
+=======
+module.exports = {
+  saveUserSkills,
+  analyzeSkillGap
+>>>>>>> 6c7adeaeb4836fa618e94ec15740d9f70d0104d8
 };
